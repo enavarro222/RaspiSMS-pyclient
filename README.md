@@ -1,6 +1,6 @@
 # RaspiSMS-pyclient: Python client for RaspiSMS API
 
-Small client for (RaspiSMS)[http://raspisms.raspbian-france.fr/] server. It simply propose a trivial interface to send SMS from a python script or from command line.
+Small client for [RaspiSMS](http://raspisms.raspbian-france.fr/) server. It simply propose a trivial interface to send SMS from a python script or from command line.
 
 See: 
 * http://raspisms.raspbian-france.fr/
