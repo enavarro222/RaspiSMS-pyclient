@@ -1,0 +1,12 @@
+#virtualenv
+ENV/
+# ignore editor temp files
+*~
+# ignore pyc files
+*.pyc
+
+# ignore _rep in documentation dir
+/docs/_*
+
+/.private/
+.ipynb_checkpoints/
