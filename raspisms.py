@@ -7,11 +7,8 @@ see: http://raspisms.raspbian-france.fr/
 from __future__ import print_function
 import os
 import sys
-import requests
 
-
-cwd = os.path.abspath(os.path.dirname(__file__))
-__version__ = open(os.path.join(cwd, 'VERSION.txt')).read()
+__version__ = "0.1.0"
 
 class RaspiSMSError(RuntimeError):
     pass
@@ -28,8 +25,9 @@ class RaspiSMS(object):
         self._password = password
 
     def send(self, num, text, date=None):
-        #TODO manage date
-        if date is not None:
+        #Note: import here to be able to import the module from setup.py whitout any dep
+        import requests 
+        if date is not None: #TODO manage date
             raise NotImplementedError("Need to be done... do it (and share it) or ask kindly on github")
         url = "%s/smsAPI/send/" % (self._host)
         data = {}
@@ -67,7 +65,6 @@ def main():
     #TODO add interactive read of data
 
     args = parser.parse_args()
-
     rsms = RaspiSMS(args.host, email=args.email, password=args.password)
     try:
         rsms.send(args.NUM, args.TEXT)

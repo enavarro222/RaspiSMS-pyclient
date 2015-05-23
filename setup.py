@@ -10,10 +10,10 @@ def parse_requirements(filename):
 
 cwd = os.path.abspath(os.path.dirname(__file__))
 
-__version__ = open(os.path.join(cwd, 'VERSION.txt')).read()
 readme = open(os.path.join(cwd, 'README.md')).read()
 reqs = parse_requirements(os.path.join(cwd, 'requirements.txt'))
 
+from raspisms import __version__
 
 setup(
     name='raspisms-pyclient',
