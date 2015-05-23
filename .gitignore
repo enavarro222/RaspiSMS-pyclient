@@ -5,6 +5,9 @@ ENV/
 # ignore pyc files
 *.pyc
 
+dist/
+raspisms_pyclient.egg-info/
+
 # ignore _rep in documentation dir
 /docs/_*
 
