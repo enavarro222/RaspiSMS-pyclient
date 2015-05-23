@@ -5,11 +5,13 @@
 see: http://raspisms.raspbian-france.fr/
 """
 from __future__ import print_function
+import os
 import sys
 import requests
 
-__version__ = '0.1.0'
 
+cwd = os.path.abspath(os.path.dirname(__file__))
+__version__ = open(os.path.join(cwd, 'VERSION.txt')).read()
 
 class RaspiSMSError(RuntimeError):
     pass
