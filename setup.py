@@ -3,15 +3,15 @@
 import os
 from setuptools import setup, find_packages
 
-cwd = os.path.abspath(os.path.dirname(__file__))
-
-version = open(os.path.join(cwd, 'VERSION.txt')).read()
-readme = open(os.path.join(cwd, 'README.md')).read()
-
 def parse_requirements(filename):
     """ load requirements from a pip requirements file """
     lineiter = (line.strip() for line in open(filename))
     return [line for line in lineiter if line and not line.startswith("#")]
+
+cwd = os.path.abspath(os.path.dirname(__file__))
+
+__version__ = open(os.path.join(cwd, 'VERSION.txt')).read()
+readme = open(os.path.join(cwd, 'README.md')).read()
 reqs = parse_requirements(os.path.join(cwd, 'requirements.txt'))
 
 
