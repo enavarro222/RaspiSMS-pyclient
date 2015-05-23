@@ -1,6 +1,8 @@
 # RaspiSMS-pyclient: Python client for RaspiSMS API
 
-See see: 
+Small client for (RaspiSMS)[http://raspisms.raspbian-france.fr/] server. It simply propose a trivial interface to send SMS from a python script or from command line.
+
+See: 
 * http://raspisms.raspbian-france.fr/
 * https://github.com/RaspbianFrance/RaspiSMS
 
@@ -19,7 +21,7 @@ rsms = RaspiSMS("http://URL_TO/RaspiSMS", email="ADMIN@EMAIL.DD", password="PASS
 rsms.send("PHONENUMBER", "SMS text !")
 ```
 
-## Comand-line tool
+## Command-line tool
 
 A command line tool `raspisms-send` is provided, you can use it this way:
 
