@@ -25,7 +25,7 @@ setup(
     url='https://github.com/enavarro222/RaspiSMS-pyclient',
     py_modules=['raspisms'],
     entry_points = {
-        'console_scripts': ['raspisms-send=raspisms:main'],
+        'console_scripts': ['raspisms-send=raspisms:raspisms_send'],
     },
     classifiers=[
         "Programming Language :: Python",

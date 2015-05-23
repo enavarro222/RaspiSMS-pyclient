@@ -17,10 +17,10 @@ class RaspiSMSError(RuntimeError):
 class RaspiSMS(object):
     """ Minimal client for RaspiSMS API (http://raspisms.raspbian-france.fr)
     """
-    def __init__(self, host, email, password):
+    def __init__(self, raspisms_url, email, password):
         #TODO check host ok
         #TODO add options for a HTTP auth system
-        self._host = host
+        self._raspisms_url = raspisms_url
         self._email = email
         self._password = password
 
@@ -29,7 +29,7 @@ class RaspiSMS(object):
         import requests 
         if date is not None: #TODO manage date
             raise NotImplementedError("Need to be done... do it (and share it) or ask kindly on github")
-        url = "%s/smsAPI/send/" % (self._host)
+        url = "%s/smsAPI/send/" % (self._raspisms_url)
         data = {}
         data['email'] = self._email
         data['password'] = self._password
@@ -51,13 +51,15 @@ class RaspiSMS(object):
             raise RaspiSMSError("Unknow error")
 
 
-def main():
+def raspisms_send():
+    """ raspisms-send: Command line tool to send SMS
+    """
     import argparse
     parser = argparse.ArgumentParser(description='Send a SMS with throw a RaspiSMS server.')
     parser.add_argument("NUM", help="Destinataire phone number")
     parser.add_argument("TEXT", help="SMS it self !")
     parser_raspisms = parser.add_argument_group('RaspiSMS arguments')
-    parser_raspisms.add_argument("-H", "--host", dest="host", help="RaspiSMS url", required=True)
+    parser_raspisms.add_argument("-u", "--url", dest="url", help="RaspiSMS base url", required=True)
     parser_raspisms.add_argument("-e", "--email", dest="email", help="RaspiSMS admin email", required=True)
     parser_raspisms.add_argument("-p", "--password", dest="password", help="RaspiSMS admin password", required=True)
 
@@ -65,14 +67,17 @@ def main():
     #TODO add interactive read of data
 
     args = parser.parse_args()
-    rsms = RaspiSMS(args.host, email=args.email, password=args.password)
+    rsms = RaspiSMS(args.url, email=args.email, password=args.password)
     try:
         rsms.send(args.NUM, args.TEXT)
     except RaspiSMSError as err:
         print("Error: %s" % err, file=sys.stderr)
         return 1
+    else:
+        print("SMS of %d char will be sent to %s" % (len(args.TEXT), args.NUM))
+        return 0
 
 if __name__ == '__main__':
-    sys.exit(main())
+    sys.exit(raspisms_send())
 
 
